@@ -74,29 +74,33 @@ export class MultiSelectSearchFilter {
     template: `
         <div class="dropdown">
             <button type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses"
-            (click)="toggleDropdown()">{{ title }}&nbsp;<span class="caret"></span></button>
+            (click)="toggleDropdown()">{{ title }}</button>
             <ul *ngIf="isVisible" class="dropdown-menu" [class.pull-right]="settings.pullRight"
             [style.max-height]="settings.maxHeight" style="display: block; height: auto; overflow-y: auto;">
                 <li class="dropdown-item" *ngIf="settings.enableSearch">
                     <div class="input-group input-group-sm">
-                        <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search"></i></span>
+                        <span class="input-group-addon" id="sizing-addon3">
+                          <i class="purecssicon purecssicon-mglass"></i>
+                        </span>
                         <input type="text" class="form-control" placeholder="{{ texts.searchPlaceholder }}"
                         aria-describedby="sizing-addon3" [(ngModel)]="searchFilterText">
                         <span class="input-group-btn" *ngIf="searchFilterText.length > 0">
-                            <button class="btn btn-default" type="button" (click)="clearSearch()"><i class="fa fa-times"></i></button>
+                          <button class="btn btn-secondary" type="button" (click)="clearSearch()">
+                            <i class="purecssicon purecssicon-close"></i>
+                          </button>
                         </span>
                     </div>
                 </li>
                 <li class="dropdown-divider divider" *ngIf="settings.enableSearch"></li>
                 <li class="dropdown-item" *ngIf="settings.showCheckAll">
                     <a href="javascript:;" role="menuitem" tabindex="-1" (click)="checkAll()">
-                        <span style="width: 16px;" class="glyphicon glyphicon-ok"></span>
+                        <i class="purecssicon purecssicon-checkmark"></i>
                         {{ texts.checkAll }}
                     </a>
                 </li>
                 <li class="dropdown-item" *ngIf="settings.showUncheckAll">
                     <a href="javascript:;" role="menuitem" tabindex="-1" (click)="uncheckAll()">
-                        <span style="width: 16px;" class="glyphicon glyphicon-remove"></span>
+                        <i class="purecssicon purecssicon-close"></i>
                         {{ texts.uncheckAll }}
                     </a>
                 </li>
