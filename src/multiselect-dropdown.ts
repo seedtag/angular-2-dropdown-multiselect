@@ -72,7 +72,7 @@ export class MultiSelectSearchFilter {
   selector: 'ss-multiselect-dropdown',
   providers: [MULTISELECT_VALUE_ACCESSOR],
   styles: [`
-	a { outline: none !important; }
+	   a { outline: none !important; }
   `],
   templateUrl: './multiselect-dropdown.html'
 })
@@ -83,8 +83,6 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
   @Input() texts: IMultiSelectTexts;
   @Output() selectionLimitReached = new EventEmitter();
   @Output() dropdownClosed = new EventEmitter();
-
-  @HostListener('document: click', ['$event.target'])
 
   model: number[];
   title: string;
@@ -114,17 +112,7 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
     defaultTitle: 'Select',
   };
 
-  constructor(private element: ElementRef,
-    private differs: IterableDiffers) {
-    this.differ = differs.find([]).create(null);
-  }
-
-  ngOnInit() {
-    this.settings = Object.assign(this.defaultSettings, this.settings);
-    this.texts = Object.assign(this.defaultTexts, this.texts);
-    this.title = this.texts.defaultTitle;
-  }
-
+  @HostListener('document: click', ['$event.target'])
   onClick(target: HTMLElement) {
     let parentFound = false;
     while (target != null && !parentFound) {
@@ -137,6 +125,18 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
       this.isVisible = false;
     }
   }
+
+  constructor(private element: ElementRef,
+    private differs: IterableDiffers) {
+    this.differ = differs.find([]).create(null);
+  }
+
+  ngOnInit() {
+    this.settings = Object.assign(this.defaultSettings, this.settings);
+    this.texts = Object.assign(this.defaultTexts, this.texts);
+    this.title = this.texts.defaultTitle;
+  }
+
   onModelChange: Function = (_: any) => { };
   onModelTouched: Function = () => { };
 
