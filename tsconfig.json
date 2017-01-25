@@ -1,13 +1,16 @@
 ﻿{
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "dom"],
-    "module": "system",
+    "lib": ["es2015", "dom"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true
-  }
+    "skipDefaultLibCheck": true,
+    "outFile": "dist/multiselect-dropdown.js"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

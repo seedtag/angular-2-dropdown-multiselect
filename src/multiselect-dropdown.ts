@@ -6,9 +6,7 @@
  */
 
 import {
-  NgModule,
   Component,
-  Pipe,
   OnInit,
   DoCheck,
   HostListener,
@@ -19,8 +17,13 @@ import {
   forwardRef,
   IterableDiffers
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+
+import {
+  IMultiSelectTexts,
+  IMultiSelectOption,
+  IMultiSelectSettings
+} from './multiselect-interfaces';
 
 const MULTISELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,45 +31,6 @@ const MULTISELECT_VALUE_ACCESSOR: any = {
   multi: true
 };
 
-export interface IMultiSelectOption {
-  id: any;
-  name: string;
-}
-
-export interface IMultiSelectSettings {
-  pullRight?: boolean;
-  enableSearch?: boolean;
-  checkedStyle?: 'checkboxes' | 'glyphicon';
-  buttonClasses?: string;
-  selectionLimit?: number;
-  closeOnSelect?: boolean;
-  autoUnselect?: boolean;
-  showCheckAll?: boolean;
-  showUncheckAll?: boolean;
-  dynamicTitleMaxItems?: number;
-  maxHeight?: string;
-}
-
-export interface IMultiSelectTexts {
-  checkAll?: string;
-  uncheckAll?: string;
-  checked?: string;
-  checkedPlural?: string;
-  searchPlaceholder?: string;
-  defaultTitle?: string;
-}
-
-@Pipe({
-  name: 'searchFilter'
-})
-export class MultiSelectSearchFilter {
-  transform(options: Array<IMultiSelectOption>, args: string): Array<IMultiSelectOption> {
-    return options.filter((option: IMultiSelectOption) =>
-      option.name
-        .toLowerCase()
-        .indexOf((args || '').toLowerCase()) > -1);
-  }
-}
 
 @Component({
   selector: 'ss-multiselect-dropdown',
@@ -94,7 +58,7 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
     pullRight: false,
     enableSearch: false,
     checkedStyle: 'checkboxes',
-    buttonClasses: 'btn btn-default',
+    buttonClasses: 'btn btn-default btn-secondary',
     selectionLimit: 0,
     closeOnSelect: false,
     autoUnselect: false,
@@ -235,10 +199,3 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
     this.onModelChange(this.model);
   }
 }
-
-@NgModule({
-  imports: [CommonModule, FormsModule],
-  exports: [MultiselectDropdown],
-  declarations: [MultiselectDropdown, MultiSelectSearchFilter],
-})
-export class MultiselectDropdownModule {}
