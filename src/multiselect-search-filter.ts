@@ -1,5 +1,7 @@
 import { Pipe } from '@angular/core';
 
+import { IMultiSelectOption } from './multiselect-interfaces';
+
 @Pipe({
   name: 'searchFilter'
 })
