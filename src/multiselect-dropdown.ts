@@ -37,6 +37,12 @@ const MULTISELECT_VALUE_ACCESSOR: any = {
   providers: [MULTISELECT_VALUE_ACCESSOR],
   styles: [`
 	   a { outline: none !important; }
+     .dropdown-multiselect .dropdown-menu {
+       display: block;
+       height: auto;
+       overflow-x: hidden;
+       overflow-y: auto;
+     }
   `],
   templateUrl: './multiselect-dropdown.html'
 })
@@ -66,6 +72,7 @@ export class MultiselectDropdown implements OnInit, DoCheck, ControlValueAccesso
     showUncheckAll: false,
     dynamicTitleMaxItems: 3,
     maxHeight: '300px',
+    maxWidth: '350px',
   };
   defaultTexts: IMultiSelectTexts = {
     checkAll: 'Check all',

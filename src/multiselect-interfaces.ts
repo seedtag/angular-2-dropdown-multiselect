@@ -15,6 +15,7 @@ export interface IMultiSelectSettings {
   showUncheckAll?: boolean;
   dynamicTitleMaxItems?: number;
   maxHeight?: string;
+  maxWidth?: string;
 }
 
 export interface IMultiSelectTexts {
